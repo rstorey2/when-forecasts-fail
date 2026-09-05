@@ -1,0 +1,65 @@
+study_period:
+  start_date: 2020-01-01
+  end_date: 2025-12-31
+  time_standard: UTC
+
+observation_source:
+  dataset: NOAA/NCEI Global Hourly (ISD)
+  network_identification: NWS ASOS equipment roster crosswalked to NCEI ISD identifiers
+  late_2025_availability_status: unavailable_in_current_public_access_listing_through_2025-08-28
+
+observation_matching:
+  target: HRRR forecast valid UTC hour
+  search_window:
+    start_minutes_relative_to_target: -10
+    end_minutes_relative_to_target: 0
+  selection_order:
+    - closest_observation_to_target_hour
+    - acceptable_ncei_quality_control_status
+    - routine_hourly_observation_if_still_tied
+  missing_temperature: exclude_forecast_observation_pair
+  imputation: false
+
+station_completeness:
+  preliminary_screen: NCEI ISD monthly inventory
+  final_metric: qualifying_forecast_observation_pairs_over_expected_pairs
+  required_annual_coverage: every_study_year
+  target_minimum_fraction: 0.90
+  final_eligibility: pending_data_screen
+
+spatial_matching:
+  method: nearest_HRRR_3km_grid_cell_center
+  mapping: fixed_per_station
+  interpolation_primary_analysis: false
+
+candidates:
+  - {icao: KAKH, state: NC, latitude: 35.197, longitude: -81.156, elevation_m: 241.5, status: pending_data_screen}
+  - {icao: KAVL, state: NC, latitude: 35.432, longitude: -82.538, elevation_m: 645.6, status: pending_data_screen}
+  - {icao: KBUY, state: NC, latitude: 36.048, longitude: -79.474, elevation_m: 185.0, status: pending_data_screen}
+  - {icao: KCLT, state: NC, latitude: 35.223, longitude: -80.954, elevation_m: 222.6, status: pending_data_screen}
+  - {icao: KECG, state: NC, latitude: 36.258, longitude: -76.172, elevation_m: 1.7, status: pending_data_screen}
+  - {icao: KEQY, state: NC, latitude: 35.015, longitude: -80.624, elevation_m: 204.4, status: pending_data_screen}
+  - {icao: KEWN, state: NC, latitude: 35.068, longitude: -77.048, elevation_m: 3.2, status: pending_data_screen}
+  - {icao: KFAY, state: NC, latitude: 34.990, longitude: -78.880, elevation_m: 56.7, status: pending_data_screen}
+  - {icao: KGSO, state: NC, latitude: 36.097, longitude: -79.943, elevation_m: 275.0, status: pending_data_screen}
+  - {icao: KHKY, state: NC, latitude: 35.742, longitude: -81.382, elevation_m: 356.6, status: pending_data_screen}
+  - {icao: KHSE, state: NC, latitude: 35.232, longitude: -75.622, elevation_m: 3.8, status: pending_data_screen}
+  - {icao: KILM, state: NC, latitude: 34.267, longitude: -77.900, elevation_m: 7.0, status: pending_data_screen}
+  - {icao: KINT, state: NC, latitude: 36.133, longitude: -80.224, elevation_m: 291.6, status: pending_data_screen}
+  - {icao: KLBT, state: NC, latitude: 34.608, longitude: -79.059, elevation_m: 36.9, status: pending_data_screen, review_flags: [additional_completeness_review]}
+  - {icao: KMEB, state: NC, latitude: 34.791, longitude: -79.368, elevation_m: 64.9, status: pending_data_screen}
+  - {icao: KMRH, state: NC, latitude: 34.733, longitude: -76.657, elevation_m: 1.5, status: pending_data_screen}
+  - {icao: KRDU, state: NC, latitude: 35.892, longitude: -78.782, elevation_m: 120.5, status: pending_data_screen}
+  - {icao: KRWI, state: NC, latitude: 35.850, longitude: -77.895, elevation_m: 45.6, status: pending_data_screen}
+  - {icao: KAND, state: SC, latitude: 34.498, longitude: -82.709, elevation_m: 233.8, status: pending_data_screen}
+  - {icao: KCAE, state: SC, latitude: 33.942, longitude: -81.118, elevation_m: 68.3, status: pending_data_screen}
+  - {icao: KCEU, state: SC, latitude: 34.672, longitude: -82.881, elevation_m: 270.8, status: pending_data_screen}
+  - {icao: KCHS, state: SC, latitude: 32.899, longitude: -80.041, elevation_m: 11.8, status: pending_data_screen}
+  - {icao: KCRE, state: SC, latitude: 33.816, longitude: -78.720, elevation_m: 8.8, status: pending_data_screen}
+  - {icao: KCUB, state: SC, latitude: 33.972, longitude: -80.994, elevation_m: 54.7, status: pending_data_screen}
+  - {icao: KFLO, state: SC, latitude: 34.188, longitude: -79.731, elevation_m: 43.0, status: pending_data_screen}
+  - {icao: KGMU, state: SC, latitude: 34.849, longitude: -82.350, elevation_m: 309.9, status: pending_data_screen}
+  - {icao: KGRD, state: SC, latitude: 34.254, longitude: -82.153, elevation_m: 188.2, status: pending_data_screen}
+  - {icao: KGSP, state: SC, latitude: 34.906, longitude: -82.213, elevation_m: 294.4, status: pending_data_screen}
+  - {icao: KOGB, state: SC, latitude: 33.464, longitude: -80.853, elevation_m: 59.0, status: pending_data_screen}
+  - {icao: KUZA, state: SC, latitude: 34.984, longitude: -81.056, elevation_m: 197.4, status: pending_data_screen}
